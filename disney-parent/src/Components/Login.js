@@ -18,32 +18,37 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-
 export default function Login() {
   const classes = useStyles();
 
+  const onSubmit = event => {
+    console.log(event)
+  }
+
   return (
-    <form className={classes.container} autoComplete="off">
-      <TextField
-        className={classes.textField}
-        id="outlined-email-input"
-        label="Email"
-        type="email"
-        name="email"
-        autoComplete="email"
-        margin="normal"
-        variant="outlined"
-      />
-      <TextField
-        className={classes.textField}
-        id="outlined-password-input"
-        label="Password"
-        type="password"
-        autoComplete="current-password"
-        margin="normal"
-        variant="outlined"
-      />
+    <div className="form-container" onSubmit={onSubmit}>
+      <form className={classes.container} autoComplete="off">
+        <TextField
+          className={classes.textField}
+          id="outlined-email-input"
+          label="Email"
+          type="email"
+          name="email"
+          autoComplete="email"
+          margin="normal"
+          variant="outlined"
+        />
+        <TextField
+          className={classes.textField}
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+          margin="normal"
+          variant="outlined"
+        />
+      </form>
       <Button variant="outlined" color="primary" className={classes.button}>Log In</Button>
-    </form>
+    </div>
   );
 };
