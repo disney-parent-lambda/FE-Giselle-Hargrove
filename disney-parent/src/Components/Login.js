@@ -25,7 +25,7 @@ export default function Login() {
 
   const handleChange = event => {
     setCreds({...creds, [event.target.name]: event.target.value });
-    console.log(creds, event)
+    console.log(creds)
   }
 
   const handleSubmit = e => {
@@ -40,7 +40,7 @@ export default function Login() {
       }
     }).then(res => {
       console.log(res)
-        /*localStorage.setItem('token', res.data.access_token);*/
+        localStorage.setItem('token', res.data.access_token);
         /*this.props.history.push('/users');*/
     }).catch(err => console.dir(err));
       e.preventDefault();
@@ -49,7 +49,7 @@ export default function Login() {
   return (
     <div className="form-container">
       <form className={classes.container} autoComplete="off" onSubmit={event => handleSubmit(event)}>
-        {/*<TextField
+        <TextField
           className={classes.textField}
           id="outlined-email-input"
           label="username"
@@ -62,26 +62,13 @@ export default function Login() {
           className={classes.textField}
           id="outlined-password-input"
           label="Password"
+          name="password"
           type="password"
           margin="normal"
           variant="outlined"
           onChange={event => handleChange(event)}
-        />*/}
-        <label>
-          Username:
-          <input
-            type="text"
-            name="username"
-            onChange={event => handleChange(event)} />
-        </label>
-        <label>
-          Password:
-          <input
-            type="text"
-            name="password"
-            onChange={event => handleChange(event)} />
-        </label>
-        <button variant="outlined" color="primary" className={classes.button}>Log In</button>
+        />
+        <Button type="submit" variant="outlined" color="primary" className={classes.button}>Log In</Button>
       </form>
     </div>
   );
