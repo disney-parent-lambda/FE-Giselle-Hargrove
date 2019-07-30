@@ -5,9 +5,10 @@ const Login = () => {
   let url = "https://disneyparents.herokuapp.com/";
 
   useEffect(() => {
-    axios.get('https://touringplans.com/magic-kingdom/attractions.json').then((response) => {
-      console.log(response);;
-    });
+    // uncomment after api 
+    // axios.get('https://touringplans.com/magic-kingdom/attractions.json').then((response) => {
+    //   console.log(response);;
+    // });
   }, [])
 
   return (
