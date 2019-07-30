@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   container: {
@@ -11,21 +12,20 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
-  dense: {
-    marginTop: theme.spacing(2),
-  },
-  menu: {
-    width: 200,
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
 
 
 export default function Login() {
+  const classes = useStyles();
 
   return (
-    <form autoComplete="off">
+    <form className={classes.container} autoComplete="off">
       <TextField
+        className={classes.textField}
         id="outlined-email-input"
         label="Email"
         type="email"
@@ -35,6 +35,7 @@ export default function Login() {
         variant="outlined"
       />
       <TextField
+        className={classes.textField}
         id="outlined-password-input"
         label="Password"
         type="password"
@@ -42,6 +43,7 @@ export default function Login() {
         margin="normal"
         variant="outlined"
       />
+      <Button variant="outlined" color="primary" className={classes.button}>Log In</Button>
     </form>
   );
 };
