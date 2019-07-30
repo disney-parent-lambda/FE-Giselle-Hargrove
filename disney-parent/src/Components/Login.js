@@ -23,12 +23,13 @@ export default function Login() {
   const [creds, setCreds] = useState({username: '', password: ''});
   const classes = useStyles();
 
-  const handleChange = name => event => {
-    setCreds({...creds, [name]: event.target.value });
+  const handleChange = event => {
+    setCreds({...creds, [event.target.name]: event.target.value });
+    console.log(creds, event)
   }
 
   const handleSubmit = e => {
-    console.log(e)
+    console.log(creds)
     axios.post('https://disneyparents.herokuapp.com/login',
     `grant_type=password&username=${creds.username}&password=${creds.password}`,
     {
@@ -48,26 +49,39 @@ export default function Login() {
   return (
     <div className="form-container">
       <form className={classes.container} autoComplete="off" onSubmit={event => handleSubmit(event)}>
-        <TextField
+        {/*<TextField
           className={classes.textField}
           id="outlined-email-input"
           label="username"
-          name="email"
+          name="username"
           margin="normal"
           variant="outlined"
-          onChange={handleChange('username')}
+          onChange={event => handleChange(event)}
         />
         <TextField
           className={classes.textField}
           id="outlined-password-input"
           label="Password"
           type="password"
-          autoComplete="current-password"
           margin="normal"
           variant="outlined"
-          onChange={handleChange('password')}
-        />
-      <button variant="outlined" color="primary" className={classes.button}>Log In</button>
+          onChange={event => handleChange(event)}
+        />*/}
+        <label>
+          Username:
+          <input
+            type="text"
+            name="username"
+            onChange={event => handleChange(event)} />
+        </label>
+        <label>
+          Password:
+          <input
+            type="text"
+            name="password"
+            onChange={event => handleChange(event)} />
+        </label>
+        <button variant="outlined" color="primary" className={classes.button}>Log In</button>
       </form>
     </div>
   );
