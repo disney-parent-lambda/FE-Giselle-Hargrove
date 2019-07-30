@@ -16,6 +16,7 @@ export default function TabPanel(props) {
       {...other}
     >
       <Box p={3}>{children}</Box>
+
     </Typography>
   );
 }

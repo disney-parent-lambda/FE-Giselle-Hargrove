@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import TabPanel from './TabPanel';
 import LinkTab from './LinkTab';
+import TicketList from './TicketList';
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -28,12 +29,12 @@ export default function Home() {
 
           <LinkTab label="Home" href="/home" {...a11yProps(0)} />
           <LinkTab label="Open Tickets" href="/tickets" {...a11yProps(1)} />
-          <LinkTab label="Edit Profile" href="/edit-profile" {...a11yProps(2)} />
+          <LinkTab label="Main Attractions" href="/attractions" {...a11yProps(2)} />
 
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Page One
+        <TicketList />
       </TabPanel>
       <TabPanel value={value} index={1}>
         Page Two

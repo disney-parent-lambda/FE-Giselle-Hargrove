@@ -1,4 +1,4 @@
-export default dummyData = [
+const dummyData = [
   {
     name: "Astro Orbiter",
     short_name: "Astro Orbiter",
@@ -295,3 +295,5 @@ export default dummyData = [
     permalink: "enchanted-tiki-room"
   }
 ]
+
+export default dummyData;
