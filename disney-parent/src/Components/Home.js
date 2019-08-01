@@ -34,13 +34,13 @@ export default function Home() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <TicketList />
+        Page One
       </TabPanel>
       <TabPanel value={value} index={1}>
         Page Two
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Page Three
+        <TicketList />
       </TabPanel>
     </div>
 
