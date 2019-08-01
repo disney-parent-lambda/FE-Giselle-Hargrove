@@ -38,6 +38,8 @@ export default function Login() {
       }
     }).then(res => {
         localStorage.setItem('token', res.data.access_token);
+        creds.username = '';
+        creds.password = '';
     }).catch(err => console.dir(err));
       e.preventDefault();
   };
