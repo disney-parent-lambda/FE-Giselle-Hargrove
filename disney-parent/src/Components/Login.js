@@ -8,13 +8,17 @@ const useStyles = makeStyles(theme => ({
   container: {
     display: 'flex',
     flexWrap: 'wrap',
+    flexDirection: 'column',
+    width: '45%',
+    margin: '10% auto'
   },
   textField: {
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
   },
   button: {
-    margin: theme.spacing(1)
+    width: '35%',
+    margin: '10px auto'
   }
 }));
 
