@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import dummyData from '../data.js';
 import axios from 'axios';
 
 import Card from '@material-ui/core/Card';
@@ -9,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
+import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles({
   root: {
@@ -23,17 +22,25 @@ const useStyles = makeStyles({
 })
 
 export default function TicketList() {
-  const [data, setData] = useState([]);
+  const [switches, setSwitch] = useState({
+    attractions: true,
+    restaurants: false
+  });
+  const [restaurantData, setRestaurantData] = useState([]);
+  const [attractionData, setAttractionData] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
     axios.get('https://disneyparents.herokuapp.com/attractions/attractions').then(response => {
-      console.log(response.data);
-      setData(response.data);
+      setAttractionData(response.data);
     });
-  }, []);
+  }, [switches]);
 
-  const list = data.map((ride, index) => {
+  const handleChange = name => event => {
+    setSwitch({...switches, [name]: event.target.checked });
+  };
+
+  const attractionList = attractionData.map((ride, index) => {
     return (
       <Card
         className={classes.card}
@@ -50,8 +57,10 @@ export default function TicketList() {
 
   return (
     <Box>
+      Attractions: <Switch checked={switches.attractions} onChange={handleChange('attractions')} value='attractions'/>
+      Restraurants: <Switch checked={switches.restaurants} onChange={handleChange('restaurants')} value='restaurants' />
       <Grid container className={classes.root} justify="center" spacing={2}>
-        {list}
+        {attractionList}
       </Grid>
     </Box>
   );
