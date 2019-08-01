@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import Login from './Components/Login/Login';
-import { Route } from 'react-router-dom';
+import React from 'react';
 import AppRouter from './Components/AppRouter.js';
 import './App.css';
 

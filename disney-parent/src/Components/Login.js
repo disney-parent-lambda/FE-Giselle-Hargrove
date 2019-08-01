@@ -20,7 +20,6 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Login() {
-  const [baseUrl, setBaseUrl] = useState('https://disneyparents.herokuapp.com/createnewuser');
   const [creds, setCreds] = useState({username: '', password: ''});
   const classes = useStyles();
 
@@ -38,9 +37,7 @@ export default function Login() {
         'Content-Type': 'application/x-www-form-urlencoded'
       }
     }).then(res => {
-      console.log(res)
         localStorage.setItem('token', res.data.access_token);
-        /*this.props.history.push('/users');*/
     }).catch(err => console.dir(err));
       e.preventDefault();
   };
@@ -68,6 +65,7 @@ export default function Login() {
           onChange={event => handleChange(event)}
         />
         <Button type="submit" variant="outlined" color="primary" className={classes.button}>Log In</Button>
+        <Button href="/signup" className={classes.button} color="primary" variant="outlined">Sign Up</Button>
       </form>
     </div>
   );
