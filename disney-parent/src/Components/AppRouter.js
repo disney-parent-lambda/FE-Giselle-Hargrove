@@ -1,14 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import NavBar from './AppBar';
 import Login from './Login';
+import Signup from './Signup';
 import Home from './Home';
 
 const AppRouter = () => {
   return (
     <Router>
-
-      <Route exact path="/" component={Login} />
+      <Route
+        exact
+        path="/"
+        render={() => {
+          if(localStorage.getItem('token')) {
+            return <Redirect to="/home" />
+          } else {
+            return <Login />
+          }
+        }}  />
+      <Route path="/signup" component={Signup} />
       <Route path="/home" component={Home} />
     </Router>
   );

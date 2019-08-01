@@ -20,16 +20,15 @@ const useStyles = makeStyles(theme => ({
 
 
 export default function Login() {
+  const [baseUrl, setBaseUrl] = useState('https://disneyparents.herokuapp.com/createnewuser');
   const [creds, setCreds] = useState({username: '', password: ''});
   const classes = useStyles();
 
   const handleChange = event => {
     setCreds({...creds, [event.target.name]: event.target.value });
-    console.log(creds)
   }
 
   const handleSubmit = e => {
-    console.log(creds)
     axios.post('https://disneyparents.herokuapp.com/login',
     `grant_type=password&username=${creds.username}&password=${creds.password}`,
     {
