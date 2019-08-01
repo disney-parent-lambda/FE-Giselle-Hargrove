@@ -40,6 +40,7 @@ export default function Login() {
         localStorage.setItem('token', res.data.access_token);
         creds.username = '';
         creds.password = '';
+        window.location.href = '/home';
     }).catch(err => console.dir(err));
       e.preventDefault();
   };

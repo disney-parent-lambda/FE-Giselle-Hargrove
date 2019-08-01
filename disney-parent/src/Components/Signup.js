@@ -28,7 +28,8 @@ export default function Signup() {
 
   const handleSubmit = e => {
     axios.post('https://disneyparents.herokuapp.com/createnewuser', creds).then(res => {
-      console.log(res, 'response');
+      localStorage.setItem('token', window.btoa('lambda-client:lambda-secret'));
+      window.location.href = '/home';
       creds.username = '';
       creds.password = '';
     }).catch(err => console.dir(err));
