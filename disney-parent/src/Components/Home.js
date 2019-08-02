@@ -29,7 +29,7 @@ export default function Home() {
           onChange={handleChange}>
 
           <LinkTab label="Home" href="/home" {...a11yProps(0)} />
-          <LinkTab label="Open Tickets" href="/tickets" {...a11yProps(1)} />
+          <LinkTab label="Open Requests" href="/tickets" {...a11yProps(1)} />
           <LinkTab label="Main Attractions" href="/attractions" {...a11yProps(2)} />
 
         </Tabs>

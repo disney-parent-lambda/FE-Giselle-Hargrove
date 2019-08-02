@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
+import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
@@ -16,7 +17,7 @@ const useStyles = makeStyles({
     flexGrow: 1
   },
   card: {
-    width: 300,
+    width: 400,
     margin: '20px'
   }
 });
@@ -42,12 +43,15 @@ export default function TicketList() {
         key={ticket.ticketid}>
         <CardHeader
           title={ticket.attractions.attraction}
-          subheader={ticket.time}>
+          subheader={ticket.time}
+          avatar={
+            <Avatar>{ticket.user.username.charAt(0).toUpperCase()}</Avatar>
+          }>
 
         </CardHeader>
         <CardContent>
-          <Typography component='h4'>
-            # of kids: {ticket.kidCount}
+          <Typography gutterBottom>
+            Kids: {ticket.kidCount}
           </Typography>
         </CardContent>
 
