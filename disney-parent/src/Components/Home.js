@@ -3,6 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Tabs from '@material-ui/core/Tabs';
 import TabPanel from './TabPanel';
 import LinkTab from './LinkTab';
+import AttractionsList from './AttractionsList';
 import TicketList from './TicketList';
 
 export default function Home() {
@@ -37,10 +38,10 @@ export default function Home() {
         Page One
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Page Two
+        <TicketList />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <TicketList />
+        <AttractionsList />
       </TabPanel>
     </div>
 

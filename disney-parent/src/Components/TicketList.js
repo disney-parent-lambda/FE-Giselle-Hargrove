@@ -1,66 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import Card from '@material-ui/core/Card';
+import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles({
   root: {
     flexGrow: 1
   },
   card: {
-    height: 100,
     width: 300,
     margin: '20px'
   }
-})
+});
+
 
 export default function TicketList() {
-  const [switches, setSwitch] = useState({
-    attractions: true,
-    restaurants: false
-  });
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [attractionData, setAttractionData] = useState([]);
+  const [tickets, setTickets] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
-    axios.get('https://disneyparents.herokuapp.com/attractions/attractions').then(response => {
-      setAttractionData(response.data);
-    });
-  }, [switches]);
+    axios.get('https://disneyparents.herokuapp.com/tickets/tickets').then(response => {
+      console.log(response.data);
+      setTickets(response.data);
+    }).catch(err => {
+      console.dir(err);
+    })
+  }, []);
 
-  const handleChange = name => event => {
-    setSwitch({...switches, [name]: event.target.checked });
-  };
-
-  const attractionList = attractionData.map((ride, index) => {
+  const ticketList = tickets.map(ticket => {
     return (
       <Card
         className={classes.card}
-        key={ride.attractionid}>
+        key={ticket.ticketid}>
+        <CardHeader
+          title={ticket.attractions.attraction}
+          subheader={ticket.time}>
+
+        </CardHeader>
         <CardContent>
-          {ride.attraction}
+          <Typography component='h4'>
+            # of kids: {ticket.kidCount}
+          </Typography>
         </CardContent>
-        <CardActions>
-          <Button size="small">See More</Button>
-        </CardActions>
+
       </Card>
     );
   });
 
+
   return (
     <Box>
-      Attractions: <Switch checked={switches.attractions} onChange={handleChange('attractions')} value='attractions'/>
-      Restraurants: <Switch checked={switches.restaurants} onChange={handleChange('restaurants')} value='restaurants' />
       <Grid container className={classes.root} justify="center" spacing={2}>
-        {attractionList}
+        {ticketList}
       </Grid>
     </Box>
   );
