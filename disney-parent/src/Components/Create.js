@@ -3,6 +3,8 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { makeStyles } from '@material-ui/core/styles';
+import SnackBar from '@material-ui/core/SnackBar';
+import SnackBarContent from '@material-ui/core/SnackBarContent';
 import axios from 'axios';
 
 const useStyles = makeStyles(theme => ({
@@ -11,6 +13,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     width: '45%',
     margin: '10% auto'
+  },
+  button: {
+    width: '35%',
+    margin: '15px auto'
   }
 }));
 
@@ -18,6 +24,7 @@ export default function CreateRequest() {
   const classes = useStyles();
   const [rides, setRides] = useState([]);
   const [restaurants, setRestaurants] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const [values, setValues] = useState({
     location: '',
@@ -27,6 +34,23 @@ export default function CreateRequest() {
 
   const handleChange = name => event => {
     setValues({ ...values, [name]: event.target.value });
+  };
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    // axios.post('https://disneyparents.herokuapp.com/tickets/postticket', values).then(response => {
+    //   console.log(response);
+    // });
+    setValues({
+      location: '',
+      kids: 0,
+      time: ''
+    });
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
   };
 
   useEffect(() => {
@@ -41,7 +65,7 @@ export default function CreateRequest() {
 
   return (
 
-    <form className={classes.container}>
+    <form className={classes.container} onSubmit={event => onSubmit(event)}>
       <TextField
         select
         label="Select Location"
@@ -75,7 +99,22 @@ export default function CreateRequest() {
 
       </TextField>
 
-      {/*<Button variant='outlined'>Create New Request</Button>*/}
+      <Button
+        type='submit'
+        className={classes.button}
+        variant='outlined'>
+        Create New Request
+      </Button>
+      <SnackBar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left'
+        }}
+        open={open}
+        autoHideDuration={2000}
+        onClose={handleClose}>
+        <span>Request Created Successfully</span>
+      </SnackBar>
     </form>
   );
 };
