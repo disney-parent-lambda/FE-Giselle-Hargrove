@@ -5,6 +5,7 @@ import TabPanel from './TabPanel';
 import LinkTab from './LinkTab';
 import AttractionsList from './AttractionsList';
 import TicketList from './TicketList';
+import CreateRequest from './Create';
 
 export default function Home() {
   const [value, setValue] = useState(0);
@@ -35,7 +36,7 @@ export default function Home() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Page One
+        <CreateRequest />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <TicketList />
