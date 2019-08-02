@@ -26,8 +26,8 @@ export default function AttractionsList() {
     attractions: true,
     restaurants: false
   });
-  const [restaurantData, setRestaurantData] = useState([]);
-  const [attractionData, setAttractionData] = useState([]);
+  // const [restaurantData, setRestaurantData] = useState([]);
+  // const [attractionData, setAttractionData] = useState([]);
   const classes = useStyles();
 
   useEffect(() => {
